@@ -1,0 +1,152 @@
+
+codegen.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <abs>:
+   0:	e3500000 	cmp	r0, #0
+   4:	a12fff1e 	bxge	lr
+   8:	e2600000 	rsb	r0, r0, #0
+   c:	e12fff1e 	bx	lr
+
+00000010 <sum>:
+  10:	e3a03000 	mov	r3, #0
+  14:	e1a02003 	mov	r2, r3
+  18:	ea000001 	b	24 <sum+0x14>
+  1c:	e0822003 	add	r2, r2, r3
+  20:	e2833001 	add	r3, r3, #1
+  24:	e1530000 	cmp	r3, r0
+  28:	bafffffb 	blt	1c <sum+0xc>
+  2c:	e1a00002 	mov	r0, r2
+  30:	e12fff1e 	bx	lr
+
+00000034 <sum_array>:
+  34:	e3a03000 	mov	r3, #0
+  38:	e1a02003 	mov	r2, r3
+  3c:	ea000002 	b	4c <sum_array+0x18>
+  40:	e790c103 	ldr	ip, [r0, r3, lsl #2]
+  44:	e082200c 	add	r2, r2, ip
+  48:	e2833001 	add	r3, r3, #1
+  4c:	e1530001 	cmp	r3, r1
+  50:	bafffffa 	blt	40 <sum_array+0xc>
+  54:	e1a00002 	mov	r0, r2
+  58:	e12fff1e 	bx	lr
+
+0000005c <sum_ptr>:
+  5c:	e1a03000 	mov	r3, r0
+  60:	e3a02000 	mov	r2, #0
+  64:	e0801101 	add	r1, r0, r1, lsl #2
+  68:	ea000001 	b	74 <sum_ptr+0x18>
+  6c:	e493c004 	ldr	ip, [r3], #4
+  70:	e082200c 	add	r2, r2, ip
+  74:	e1510003 	cmp	r1, r3
+  78:	8afffffb 	bhi	6c <sum_ptr+0x10>
+  7c:	e1a00002 	mov	r0, r2
+  80:	e12fff1e 	bx	lr
+
+00000084 <choice_if>:
+  84:	e3500005 	cmp	r0, #5
+  88:	0a000003 	beq	9c <choice_if+0x18>
+  8c:	e350000d 	cmp	r0, #13
+  90:	1a000003 	bne	a4 <choice_if+0x20>
+  94:	e3a000c5 	mov	r0, #197	; 0xc5
+  98:	e12fff1e 	bx	lr
+  9c:	e3a00063 	mov	r0, #99	; 0x63
+  a0:	e12fff1e 	bx	lr
+  a4:	e3a00000 	mov	r0, #0
+  a8:	e12fff1e 	bx	lr
+
+000000ac <choice_switch>:
+  ac:	e3500005 	cmp	r0, #5
+  b0:	0a000002 	beq	c0 <choice_switch+0x14>
+  b4:	e350000d 	cmp	r0, #13
+  b8:	0a000004 	beq	d0 <choice_switch+0x24>
+  bc:	ea000001 	b	c8 <choice_switch+0x1c>
+  c0:	e3a00063 	mov	r0, #99	; 0x63
+  c4:	e12fff1e 	bx	lr
+  c8:	e3a00000 	mov	r0, #0
+  cc:	e12fff1e 	bx	lr
+  d0:	e3a000c5 	mov	r0, #197	; 0xc5
+  d4:	e12fff1e 	bx	lr
+
+000000d8 <dense_choice_if>:
+  d8:	e3500064 	cmp	r0, #100	; 0x64
+  dc:	0a000007 	beq	100 <dense_choice_if+0x28>
+  e0:	e3500066 	cmp	r0, #102	; 0x66
+  e4:	0a000007 	beq	108 <dense_choice_if+0x30>
+  e8:	e3500069 	cmp	r0, #105	; 0x69
+  ec:	0a000007 	beq	110 <dense_choice_if+0x38>
+  f0:	e350006b 	cmp	r0, #107	; 0x6b
+  f4:	1a000007 	bne	118 <dense_choice_if+0x40>
+  f8:	e3a00051 	mov	r0, #81	; 0x51
+  fc:	e12fff1e 	bx	lr
+ 100:	e3a00063 	mov	r0, #99	; 0x63
+ 104:	e12fff1e 	bx	lr
+ 108:	e3a000c5 	mov	r0, #197	; 0xc5
+ 10c:	e12fff1e 	bx	lr
+ 110:	e3a00035 	mov	r0, #53	; 0x35
+ 114:	e12fff1e 	bx	lr
+ 118:	e3a00000 	mov	r0, #0
+ 11c:	e12fff1e 	bx	lr
+
+00000120 <dense_choice_switch>:
+ 120:	e2400064 	sub	r0, r0, #100	; 0x64
+ 124:	e3500007 	cmp	r0, #7
+ 128:	979ff100 	ldrls	pc, [pc, r0, lsl #2]
+ 12c:	ea00000d 	b	168 <dense_choice_switch+0x48>
+ 130:	00000150 	.word	0x00000150
+ 134:	00000168 	.word	0x00000168
+ 138:	00000170 	.word	0x00000170
+ 13c:	00000168 	.word	0x00000168
+ 140:	00000168 	.word	0x00000168
+ 144:	00000158 	.word	0x00000158
+ 148:	00000168 	.word	0x00000168
+ 14c:	00000160 	.word	0x00000160
+ 150:	e3a00001 	mov	r0, #1
+ 154:	e12fff1e 	bx	lr
+ 158:	e3a00003 	mov	r0, #3
+ 15c:	e12fff1e 	bx	lr
+ 160:	e3a00004 	mov	r0, #4
+ 164:	e12fff1e 	bx	lr
+ 168:	e3a00000 	mov	r0, #0
+ 16c:	e12fff1e 	bx	lr
+ 170:	e3a00002 	mov	r0, #2
+ 174:	e12fff1e 	bx	lr
+
+00000178 <main>:
+ 178:	e92d4030 	push	{r4, r5, lr}
+ 17c:	e24dd014 	sub	sp, sp, #20
+ 180:	e59f3078 	ldr	r3, [pc, #120]	; 200 <main+0x88>
+ 184:	e28d4004 	add	r4, sp, #4
+ 188:	e8930007 	ldm	r3, {r0, r1, r2}
+ 18c:	e8840007 	stm	r4, {r0, r1, r2}
+ 190:	e3a0006b 	mov	r0, #107	; 0x6b
+ 194:	ebfffffe 	bl	10 <sum>
+ 198:	e1a05000 	mov	r5, r0
+ 19c:	e1a00004 	mov	r0, r4
+ 1a0:	e3a01003 	mov	r1, #3
+ 1a4:	ebfffffe 	bl	34 <sum_array>
+ 1a8:	e0855000 	add	r5, r5, r0
+ 1ac:	e1a00004 	mov	r0, r4
+ 1b0:	e3a01003 	mov	r1, #3
+ 1b4:	ebfffffe 	bl	5c <sum_ptr>
+ 1b8:	e0854000 	add	r4, r5, r0
+ 1bc:	e3a0006b 	mov	r0, #107	; 0x6b
+ 1c0:	ebfffffe 	bl	84 <choice_if>
+ 1c4:	e0844000 	add	r4, r4, r0
+ 1c8:	e3a0006b 	mov	r0, #107	; 0x6b
+ 1cc:	ebfffffe 	bl	ac <choice_switch>
+ 1d0:	e0844000 	add	r4, r4, r0
+ 1d4:	e3a0006b 	mov	r0, #107	; 0x6b
+ 1d8:	ebfffffe 	bl	d8 <dense_choice_if>
+ 1dc:	e0844000 	add	r4, r4, r0
+ 1e0:	e3a0006b 	mov	r0, #107	; 0x6b
+ 1e4:	ebfffffe 	bl	120 <dense_choice_switch>
+ 1e8:	e0840000 	add	r0, r4, r0
+ 1ec:	e59f3010 	ldr	r3, [pc, #16]	; 204 <main+0x8c>
+ 1f0:	e5830000 	str	r0, [r3]
+ 1f4:	e28dd014 	add	sp, sp, #20
+ 1f8:	e8bd4030 	pop	{r4, r5, lr}
+ 1fc:	e12fff1e 	bx	lr
+	...
