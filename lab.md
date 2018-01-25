@@ -287,9 +287,8 @@ Hook up the power and ground rails of the breadboard
 to the 3.3V and Ground pins on your Raspberry Pi.
 Find three short male-male jumpers.
 Wire the top of the resistor to the red power rail 
-using an orange jumper (since orange indicates 3.3V) and wire a green jumper from the bottom of the resistor to segment A (Pin 11 - if you aligned pin 1 to
-column 50 as described above, pin 11 is at column 51).
-Wire digit D1 (Pin 12, column 52) to Ground using a black jumper.
+using an orange jumper (since orange indicates 3.3V) and wire a green jumper from the bottom of the resistor to segment A (Pin 11, which will be at breadboard column 51 if you aligned pin 1 to column 50 as described above).
+Wire digit D1 (Pin 12, column 50) to Ground using a black jumper.
 When you apply power to your Raspberry Pi, segment A of digit 1 should light up as shown below:
 
 ![Wired breadboard with components](images/jumper1.jpg)
